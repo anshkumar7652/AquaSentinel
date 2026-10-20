@@ -1,0 +1,151 @@
+/* AquaSentinel Design Tokens & Styling */
+/* Root variables defined for JavaFX CSS lookup */
+
+.root {
+    -aq-bg: #F4F7F9;
+    -aq-surface: #FFFFFF;
+    -aq-surface-subtle: #F8FAFC;
+    -aq-surface-hover: #EEF3F6;
+    -aq-text-primary: #162B3A;
+    -aq-text-secondary: #475569;
+    -aq-text-muted: #64748B;
+    -aq-border: #DFE7ED;
+    
+    -aq-teal: #0F766E;
+    -aq-teal-hover: #115E59;
+    -aq-teal-soft: #E6F4F1;
+    
+    -aq-info: #1D4ED8;
+    -aq-info-soft: #EFF6FF;
+    -aq-success: #166534;
+    -aq-success-soft: #F0FDF4;
+    -aq-warning: #92400E;
+    -aq-warning-soft: #FFFBEB;
+    -aq-danger: #B91C1C;
+    -aq-danger-soft: #FEF2F2;
+
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: -aq-bg;
+}
+
+/* Sidebar styling - Dark Teal/Slate matching reference-dashboard.jpg */
+.sidebar {
+    -fx-background-color: #0F2D38;
+    -fx-border-color: transparent #0B222B transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-min-width: 236px;
+    -fx-pref-width: 236px;
+    -fx-max-width: 236px;
+}
+
+.brand-title {
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.brand-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: #94A3B8;
+}
+
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #CBD5E1;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 16 10 16;
+    -fx-min-height: 42px;
+    -fx-pref-height: 42px;
+    -fx-cursor: hand;
+    -fx-background-radius: 8px;
+}
+
+.sidebar-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: #FFFFFF;
+}
+
+.sidebar-btn-active {
+    -fx-background-color: #115E59;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+/* Header styling */
+.header-bar {
+    -fx-background-color: -aq-surface;
+    -fx-border-color: transparent transparent -aq-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 16 24 16 24;
+    -fx-min-height: 72px;
+    -fx-pref-height: 72px;
+}
+
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -aq-text-primary;
+}
+
+.page-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: -aq-text-muted;
+}
+
+/* Badges & Chips */
+.badge-demo {
+    -fx-background-color: -aq-warning-soft;
+    -fx-text-fill: -aq-warning;
+    -fx-padding: 4 10 4 10;
+    -fx-background-radius: 999px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.badge-info {
+    -fx-background-color: -aq-info-soft;
+    -fx-text-fill: -aq-info;
+    -fx-padding: 4 10 4 10;
+    -fx-background-radius: 999px;
+    -fx-font-size: 12px;
+}
+
+/* Primary Button */
+.btn-primary {
+    -fx-background-color: -aq-teal;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: -aq-teal-hover;
+}
+
+/* Cards & Surfaces */
+.card {
+    -fx-background-color: -aq-surface;
+    -fx-background-radius: 12px;
+    -fx-border-color: -aq-border;
+    -fx-border-radius: 12px;
+    -fx-border-width: 1px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.03), 8, 0, 0, 2);
+}
+
+.card-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -aq-text-primary;
+}
+
+.empty-state-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: -aq-text-muted;
+}

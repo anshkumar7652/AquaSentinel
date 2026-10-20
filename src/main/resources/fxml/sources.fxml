@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.aquasentinel.presentation.controller.SourcesController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Top Action Bar -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <TextField fx:id="txtSearch" promptText="Search water sources by code or name..." prefWidth="320" styleClass="card"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnNewSource" text="+ Register Water Source" styleClass="btn-primary" onAction="#handleNewSource"/>
+    </HBox>
+
+    <!-- Sources Table -->
+    <TableView fx:id="tableSources" VBox.vgrow="ALWAYS" styleClass="card">
+        <columns>
+            <TableColumn fx:id="colCode" text="Source Code" prefWidth="120"/>
+            <TableColumn fx:id="colName" text="Name" prefWidth="200"/>
+            <TableColumn fx:id="colType" text="Type" prefWidth="140"/>
+            <TableColumn fx:id="colIntendedUse" text="Intended Use" prefWidth="150"/>
+            <TableColumn fx:id="colLocation" text="Location / Coordinates" prefWidth="250"/>
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <!-- Bottom summary -->
+    <HBox alignment="CENTER_LEFT">
+        <Label fx:id="lblSourceCount" text="Showing sources" styleClass="empty-state-text"/>
+    </HBox>
+</VBox>

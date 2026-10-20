@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.aquasentinel.presentation.controller.AlertsController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Top Action Bar -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <Label text="Quality Alerts &amp; Corrective Actions" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblAlertStatusSummary" text="Loading alerts..." styleClass="empty-state-text"/>
+        <Button text="✓ Acknowledge Alert" styleClass="btn-secondary" onAction="#handleAcknowledgeAlert"/>
+        <Button text="+ Create Action" styleClass="btn-primary" onAction="#handleCreateAction"/>
+    </HBox>
+
+    <!-- Center 2-Panel Split: Alerts on Top, Actions on Bottom -->
+    <VBox styleClass="card" spacing="8" prefHeight="260">
+        <Label text="Active &amp; Resolved Alerts" styleClass="card-title"/>
+        <TableView fx:id="tableAlerts" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colAlertId" text="Alert Ref" prefWidth="120"/>
+                <TableColumn fx:id="colAlertSource" text="Monitored Water Source" prefWidth="250"/>
+                <TableColumn fx:id="colAlertState" text="Current State" prefWidth="150"/>
+                <TableColumn fx:id="colAlertCreated" text="Triggered At" prefWidth="200"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <VBox styleClass="card" spacing="8" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Label text="Corrective Action Tasks (Selected Alert)" styleClass="card-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Advance State (In-Progress / Retest)" styleClass="btn-secondary" onAction="#handleAdvanceActionState"/>
+            <Button text="🔒 Verify &amp; Close Action" styleClass="btn-primary" onAction="#handleCloseAction"/>
+        </HBox>
+        <TableView fx:id="tableActions" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colActionDesc" text="Remediation Task Description" prefWidth="380"/>
+                <TableColumn fx:id="colActionAssignee" text="Assigned Officer" prefWidth="180"/>
+                <TableColumn fx:id="colActionDue" text="Due Date" prefWidth="130"/>
+                <TableColumn fx:id="colActionState" text="Action State" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

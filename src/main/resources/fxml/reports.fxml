@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.aquasentinel.presentation.controller.ReportsController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Top Action Bar -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <Label text="Quality Evaluation Reports &amp; Exports" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnExportPdf" text="📄 Export PDF Report" styleClass="btn-primary" disable="true" onAction="#handleExportPdf"/>
+        <Button fx:id="btnExportCsv" text="📊 Export CSV (RFC 4180)" styleClass="btn-secondary" disable="true" onAction="#handleExportCsv"/>
+    </HBox>
+
+    <!-- Main Content: Left Evaluation Selector, Right Snapshot & Rules Breakdown -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <!-- Evaluations List -->
+        <VBox styleClass="card" spacing="8" prefWidth="380">
+            <Label text="Evaluated Water Quality Records" styleClass="card-title"/>
+            <TableView fx:id="tableEvaluations" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colEvalId" text="Eval Ref" prefWidth="100"/>
+                    <TableColumn fx:id="colSampleCode" text="Sample" prefWidth="120"/>
+                    <TableColumn fx:id="colOutcome" text="Outcome" prefWidth="140"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Snapshot Details & Rule Evaluation Results -->
+        <VBox styleClass="card" spacing="12" HBox.hgrow="ALWAYS">
+            <Label text="Selected Report Snapshot Summary" styleClass="card-title"/>
+            <Separator style="-fx-background-color: -aq-border;"/>
+
+            <VBox spacing="6">
+                <Label fx:id="lblSnapshotSource" text="Water Source: -" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: -aq-text-primary;"/>
+                <Label fx:id="lblSnapshotSample" text="Sample: -" style="-fx-text-fill: -aq-text-secondary;"/>
+                <Label fx:id="lblSnapshotProfile" text="Profile: -" style="-fx-text-fill: -aq-text-secondary;"/>
+                <Label fx:id="lblSnapshotOutcome" text="Outcome: -" style="-fx-font-weight: bold; -fx-text-fill: -aq-primary;"/>
+                <Label fx:id="lblSnapshotDigest" text="SHA-256 Digest: -" styleClass="empty-state-text" style="-fx-font-size: 11px;"/>
+            </VBox>
+
+            <Separator style="-fx-background-color: -aq-border;"/>
+            <Label text="Parameter Threshold Evaluation Breakdown" style="-fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+
+            <TableView fx:id="tableRules" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colRuleParam" text="Parameter" prefWidth="120"/>
+                    <TableColumn fx:id="colRuleObserved" text="Observed Value" prefWidth="150"/>
+                    <TableColumn fx:id="colRuleLimits" text="Standard Limits" prefWidth="180"/>
+                    <TableColumn fx:id="colRulePass" text="Rule Status" prefWidth="180"/>
+                </columns>
+            </TableView>
+
+            <Label text="Educational demonstration report. Evaluated strictly against the specified evaluation profile version. Not a government-issued drinking water safety certificate."
+                   wrapText="true" styleClass="empty-state-text" style="-fx-font-size: 11px;"/>
+        </VBox>
+    </HBox>
+</VBox>

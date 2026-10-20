@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.aquasentinel.presentation.controller.AdminController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <Label text="System Administration &amp; Governance" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+
+    <TabPane VBox.vgrow="ALWAYS" styleClass="card" tabClosingPolicy="UNAVAILABLE">
+        <!-- Tab 1: User Accounts -->
+        <Tab text="User Accounts &amp; RBAC">
+            <VBox spacing="12" style="-fx-padding: 16;">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="System Users &amp; Roles" styleClass="card-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="+ Create User Account" styleClass="btn-primary" onAction="#handleAddUser"/>
+                </HBox>
+                <TableView fx:id="tableUsers" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colUserId" text="User Ref" prefWidth="120"/>
+                        <TableColumn fx:id="colUsername" text="Username" prefWidth="180"/>
+                        <TableColumn fx:id="colRole" text="Role" prefWidth="180"/>
+                        <TableColumn fx:id="colActive" text="Status" prefWidth="120"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Tab 2: Profile Standards & Rules -->
+        <Tab text="Evaluation Profiles &amp; Threshold Rules">
+            <HBox spacing="16" style="-fx-padding: 16;">
+                <VBox spacing="8" prefWidth="380">
+                    <Label text="Quality Evaluation Profiles" styleClass="card-title"/>
+                    <TableView fx:id="tableProfiles" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colProfileKey" text="Profile Key" prefWidth="140"/>
+                            <TableColumn fx:id="colProfileVer" text="Version" prefWidth="60"/>
+                            <TableColumn fx:id="colProfileStatus" text="Status" prefWidth="100"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <Label text="Analytical Threshold Limits (Selected Profile)" styleClass="card-title"/>
+                    <TableView fx:id="tableRules" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colRuleParam" text="Parameter" prefWidth="200"/>
+                            <TableColumn fx:id="colRuleBounds" text="Acceptable Range / Threshold" prefWidth="250"/>
+                            <TableColumn fx:id="colRuleRequired" text="Mandatory Evidence" prefWidth="160"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </HBox>
+        </Tab>
+
+        <!-- Tab 3: System & Demo Tools -->
+        <Tab text="Storage &amp; Educational Demo Tools">
+            <VBox spacing="16" style="-fx-padding: 20;">
+                <Label text="SQLite Database Storage &amp; Provenance" styleClass="card-title"/>
+                <Separator style="-fx-background-color: -aq-border;"/>
+
+                <GridPane hgap="12" vgap="12">
+                    <Label text="Database File:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="lblDbPath" text="aquasentinel.db" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Journal Mode:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label text="WAL (Write-Ahead Logging)" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Concurrency &amp; Locks:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-weight: bold;"/>
+                    <Label text="Enforced Foreign Keys, 5000ms Busy Timeout" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <Separator style="-fx-background-color: -aq-border;"/>
+                <Label text="Educational Demo Controls" styleClass="card-title"/>
+                <Label text="Reset or reload the built-in baseline demonstration sources, samples, alerts, and evaluations." styleClass="empty-state-text"/>
+
+                <HBox spacing="12">
+                    <Button text="⚡ Reload / Seed Educational Demo Dataset" styleClass="btn-secondary" onAction="#handleReloadDemoData"/>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

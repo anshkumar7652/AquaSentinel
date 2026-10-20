@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.aquasentinel.presentation.controller.AppShellController"
+            prefWidth="1440" prefHeight="900" minWidth="1100" minHeight="720"
+            stylesheets="@/css/app.css">
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox spacing="16" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="12" bottom="20" left="12"/>
+            </padding>
+
+            <!-- Brand Header -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets left="4" right="8" bottom="12"/>
+                </padding>
+                <javafx.scene.image.ImageView fitWidth="36" fitHeight="36" preserveRatio="true">
+                    <image>
+                        <javafx.scene.image.Image url="@/icons/app-icon.png"/>
+                    </image>
+                </javafx.scene.image.ImageView>
+                <VBox spacing="2">
+                    <Label text="AquaSentinel" styleClass="brand-title"/>
+                    <Label text="Water Quality Platform" styleClass="brand-subtitle"/>
+                </VBox>
+            </HBox>
+
+            <Separator style="-fx-background-color: rgba(255, 255, 255, 0.12);"/>
+
+            <!-- Navigation Links -->
+            <VBox spacing="4" VBox.vgrow="ALWAYS">
+                <Button fx:id="navDashboard" text="📊  Dashboard" maxWidth="Infinity" styleClass="sidebar-btn, sidebar-btn-active" onAction="#handleNavDashboard"/>
+                <Button fx:id="navSources" text="💧  Water Sources" maxWidth="Infinity" styleClass="sidebar-btn" onAction="#handleNavSources"/>
+                <Button fx:id="navInspections" text="📋  Inspections" maxWidth="Infinity" styleClass="sidebar-btn" onAction="#handleNavInspections"/>
+                <Button fx:id="navSamples" text="🧪  Samples" maxWidth="Infinity" styleClass="sidebar-btn" onAction="#handleNavSamples"/>
+                <Button fx:id="navImports" text="📥  Data Imports" maxWidth="Infinity" styleClass="sidebar-btn" onAction="#handleNavImports"/>
+                <Button fx:id="navAlerts" text="⚠️  Alerts &amp; Actions" maxWidth="Infinity" styleClass="sidebar-btn" onAction="#handleNavAlerts"/>
+                <Button fx:id="navReports" text="📄  Reports" maxWidth="Infinity" styleClass="sidebar-btn" onAction="#handleNavReports"/>
+                <Button fx:id="navAdmin" text="⚙️  Administration" maxWidth="Infinity" styleClass="sidebar-btn" onAction="#handleNavAdmin"/>
+            </VBox>
+
+            <!-- Bottom User & Environment Info -->
+            <VBox spacing="8" style="-fx-border-color: rgba(255, 255, 255, 0.12) transparent transparent transparent; -fx-padding: 12 8 0 8;">
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="Local SQLite" styleClass="badge-info"/>
+                </HBox>
+                <Label fx:id="lblCurrentUser" text="Admin User" style="-fx-font-weight: bold; -fx-text-fill: #FFFFFF;"/>
+                <Label fx:id="lblCurrentRole" text="Role: Administrator" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Main Content Center -->
+    <center>
+        <VBox VBox.vgrow="ALWAYS">
+            <!-- Header bar -->
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="header-bar">
+                <VBox spacing="4">
+                    <Label fx:id="lblHeaderTitle" text="Operational Dashboard" styleClass="page-title"/>
+                    <Label fx:id="lblHeaderSubtitle" text="System summary, recent samples, and monitoring overview" styleClass="page-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Educational demo data — not a water-safety certification." styleClass="badge-demo"/>
+            </HBox>
+
+            <!-- Dynamic Workspace Body -->
+            <StackPane fx:id="workspaceContainer" VBox.vgrow="ALWAYS">
+                <!-- Loaded dynamically by controller -->
+            </StackPane>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,93 @@
+# ==============================================================================
+# AquaSentinel — Git Ignore Specification
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Maven & Java Build Artifacts
+# ------------------------------------------------------------------------------
+target/
+*.class
+*.jar
+*.war
+*.ear
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# ------------------------------------------------------------------------------
+# 2. Local Databases & Persistence Files (Preserve Schemas & Migrations Only)
+# ------------------------------------------------------------------------------
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# ------------------------------------------------------------------------------
+# 3. Generated Reports & Export Outputs
+# ------------------------------------------------------------------------------
+reports/
+exports/
+*.pdf
+
+# ------------------------------------------------------------------------------
+# 4. Logs & JVM Crash Dumps
+# ------------------------------------------------------------------------------
+*.log
+logs/
+hs_err_pid*
+replay_pid*
+
+# ------------------------------------------------------------------------------
+# 5. IDE & Editor Metadata
+# ------------------------------------------------------------------------------
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+
+# ------------------------------------------------------------------------------
+# 6. Operating System Files
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------------------------
+# 7. Local Tooling, Agent Caches & Scratchpads
+# ------------------------------------------------------------------------------
+.freebuff/
+graphify-out/
+.agents/
+scratch/
+.tempmediaStorage/

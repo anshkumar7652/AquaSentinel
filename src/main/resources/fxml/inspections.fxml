@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.aquasentinel.presentation.controller.InspectionsController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Top Action Bar -->
+    <HBox spacing="12" alignment="CENTER_LEFT">
+        <Label text="Field Inspection Tours" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="+ Schedule Inspection" styleClass="btn-primary" onAction="#handleNewInspection"/>
+    </HBox>
+
+    <!-- Inspections Table -->
+    <TableView fx:id="tableInspections" VBox.vgrow="ALWAYS" styleClass="card">
+        <columns>
+            <TableColumn fx:id="colSource" text="Monitored Water Source" prefWidth="250"/>
+            <TableColumn fx:id="colOfficer" text="Assigned Officer" prefWidth="180"/>
+            <TableColumn fx:id="colDueDate" text="Scheduled Date" prefWidth="140"/>
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="130"/>
+            <TableColumn fx:id="colNotes" text="Notes &amp; Purpose" prefWidth="320"/>
+        </columns>
+    </TableView>
+
+    <!-- Bottom summary -->
+    <HBox alignment="CENTER_LEFT">
+        <Label fx:id="lblInspectionCount" text="Showing inspections" styleClass="empty-state-text"/>
+    </HBox>
+</VBox>

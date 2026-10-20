@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.aquasentinel.presentation.controller.DashboardController"
+            fitToWidth="true" style="-fx-background-color: transparent;">
+    <content>
+        <VBox spacing="20">
+            <padding>
+                <Insets top="20" right="24" bottom="24" left="24"/>
+            </padding>
+
+            <!-- Filter Strip -->
+            <HBox spacing="14" alignment="CENTER_LEFT" styleClass="card" style="-fx-padding: 12 16 12 16;">
+                <Label text="Scope:" style="-fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+                <ComboBox fx:id="cmbSourceFilter" promptText="All Water Sources" prefWidth="220"/>
+                <ComboBox fx:id="cmbProfileFilter" promptText="SURFACE_WATER_DEMO v1" prefWidth="220"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnApplyFilter" text="Apply Filter" styleClass="btn-primary" onAction="#handleRefresh"/>
+                <Button fx:id="btnResetFilter" text="Reset" styleClass="btn-secondary" onAction="#handleReset"/>
+            </HBox>
+
+            <!-- 4 KPI Cards -->
+            <HBox spacing="16">
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="6">
+                    <Label text="Active Sources" styleClass="card-title"/>
+                    <Label fx:id="lblActiveSources" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+                    <Label text="Monitored water points" styleClass="empty-state-text"/>
+                </VBox>
+
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="6">
+                    <Label text="Samples in Period" styleClass="card-title"/>
+                    <Label fx:id="lblSamplesPeriod" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+                    <Label text="Submitted &amp; evaluated" styleClass="empty-state-text"/>
+                </VBox>
+
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="6">
+                    <Label text="Profile Violations" styleClass="card-title"/>
+                    <Label fx:id="lblViolations" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -aq-danger;"/>
+                    <Label text="Exceeded selected rules" styleClass="empty-state-text"/>
+                </VBox>
+
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="6">
+                    <Label text="Unresolved Alerts" styleClass="card-title"/>
+                    <Label fx:id="lblOpenAlerts" text="0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -aq-warning;"/>
+                    <Label text="Pending corrective actions" styleClass="empty-state-text"/>
+                </VBox>
+            </HBox>
+
+            <!-- Center Row: 2:1 Split (Trend Chart 2/3 and Evaluation Detail 1/3) -->
+            <HBox spacing="16">
+                <!-- Trend Chart (2/3 width) -->
+                <VBox styleClass="card" HBox.hgrow="ALWAYS" spacing="12" prefHeight="380">
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <VBox spacing="2">
+                            <Label text="Water Quality Trends" styleClass="card-title"/>
+                            <Label fx:id="lblChartSubtitle" text="Turbidity (NTU) — Single-parameter timeline" styleClass="empty-state-text"/>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <ComboBox fx:id="cmbParameterSelect" prefWidth="160" promptText="Parameter"/>
+                    </HBox>
+                    <LineChart fx:id="trendChart" createSymbols="true" legendVisible="false" VBox.vgrow="ALWAYS" prefHeight="280">
+                        <xAxis>
+                            <CategoryAxis label="Observation Date"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis fx:id="yAxis" label="Observed Value"/>
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+
+                <!-- Contextual Evaluation Detail Panel (1/3 width) -->
+                <VBox styleClass="card" spacing="12" prefWidth="380" minWidth="340">
+                    <Label text="Profile Evaluation" styleClass="card-title"/>
+                    <Separator style="-fx-background-color: -aq-border;"/>
+                    <VBox spacing="8" VBox.vgrow="ALWAYS">
+                        <Label fx:id="lblSelectedSource" text="Ganga Sampling Point" style="-fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+                        <Label fx:id="lblSelectedSample" text="Sample: SMP-PASS-1 (Manual Entry)" style="-fx-font-size: 12px; -fx-text-fill: -aq-text-secondary;"/>
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <Label text="Evaluation Status:" style="-fx-font-size: 12px; -fx-text-fill: -aq-text-muted;"/>
+                            <Label fx:id="lblEvaluationBadge" text="WITHIN_PROFILE" styleClass="badge-info" style="-fx-background-color: -aq-success-soft; -fx-text-fill: -aq-success;"/>
+                        </HBox>
+                        <Separator style="-fx-background-color: -aq-border;"/>
+                        <Label text="Analytical Threshold Summary:" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: -aq-text-primary;"/>
+                        <VBox spacing="6" style="-fx-padding: 4 0 4 0;">
+                            <HBox spacing="8">
+                                <Label text="pH:" style="-fx-font-weight: bold; -fx-pref-width: 90px;"/>
+                                <Label fx:id="lblDetailPh" text="7.20 (Limit: 6.5 - 8.5) — PASS" style="-fx-text-fill: -aq-success;"/>
+                            </HBox>
+                            <HBox spacing="8">
+                                <Label text="Turbidity:" style="-fx-font-weight: bold; -fx-pref-width: 90px;"/>
+                                <Label fx:id="lblDetailTurb" text="3.0 NTU (Limit: ≤ 5.0) — PASS" style="-fx-text-fill: -aq-success;"/>
+                            </HBox>
+                            <HBox spacing="8">
+                                <Label text="DO:" style="-fx-font-weight: bold; -fx-pref-width: 90px;"/>
+                                <Label fx:id="lblDetailDo" text="6.5 mg/L (Limit: ≥ 5.0) — PASS" style="-fx-text-fill: -aq-success;"/>
+                            </HBox>
+                        </VBox>
+                        <Region VBox.vgrow="ALWAYS"/>
+                        <Label text="Note: Evaluated strictly against SURFACE_WATER_DEMO v1. Fictional demo dataset." wrapText="true" styleClass="empty-state-text" style="-fx-font-size: 11px;"/>
+                    </VBox>
+                </VBox>
+            </HBox>
+
+            <!-- Bottom Section: Recent Samples Table -->
+            <VBox styleClass="card" spacing="12">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="2">
+                        <Label text="Recent Water Samples" styleClass="card-title"/>
+                        <Label text="Persisted laboratory samples and workflow lifecycle states" styleClass="empty-state-text"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblSystemStatus" text="Database connected (WAL mode)." style="-fx-font-size: 12px; -fx-text-fill: -aq-text-muted;"/>
+                </HBox>
+
+                <TableView fx:id="tableRecentSamples" prefHeight="220">
+                    <columns>
+                        <TableColumn fx:id="colSampleCode" text="Sample Code" prefWidth="140"/>
+                        <TableColumn fx:id="colSampleSource" text="Water Source" prefWidth="200"/>
+                        <TableColumn fx:id="colSampleCollected" text="Collected At" prefWidth="180"/>
+                        <TableColumn fx:id="colSampleStatus" text="Workflow Status" prefWidth="140"/>
+                        <TableColumn fx:id="colSampleOrigin" text="Origin" prefWidth="140"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </content>
+</ScrollPane>
+

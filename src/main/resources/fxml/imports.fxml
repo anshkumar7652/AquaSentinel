@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.aquasentinel.presentation.controller.ImportsController"
+      spacing="16">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <!-- Top Action & Selection Bar -->
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="card" style="-fx-padding: 12 16 12 16;">
+        <Button text="📁 Select External CSV..." styleClass="btn-secondary" onAction="#handleChooseFile"/>
+        <Button text="⚡ Load Demo Fixture (delhi_monitoring_demo.csv)" styleClass="btn-secondary" onAction="#handleLoadDemoFixture"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblValidationStatus" text="No dataset selected" style="-fx-font-weight: bold; -fx-text-fill: -aq-text-muted;"/>
+        <Button fx:id="btnCommit" text="Commit Import Batch" styleClass="btn-primary" disable="true" onAction="#handleCommit"/>
+    </HBox>
+
+    <!-- Metadata & Hash Card -->
+    <HBox spacing="16">
+        <VBox styleClass="card" spacing="8" prefWidth="380">
+            <Label text="Batch Provenance Metadata" styleClass="card-title"/>
+            <Separator style="-fx-background-color: -aq-border;"/>
+            <GridPane hgap="8" vgap="8">
+                <Label text="Dataset Title:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                <TextField fx:id="txtDatasetTitle" text="Delhi Monitoring Fixture" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Publisher:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                <TextField fx:id="txtPublisher" text="Delhi Jal Board (Demo)" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <Label text="Source URL:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-size: 12px;"/>
+                <TextField fx:id="txtSourceUrl" text="https://data.gov.in" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            </GridPane>
+        </VBox>
+
+        <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+            <Label text="Batch Summary &amp; SHA-256 Digest" styleClass="card-title"/>
+            <Separator style="-fx-background-color: -aq-border;"/>
+            <HBox spacing="24">
+                <VBox spacing="4">
+                    <Label fx:id="lblSelectedFile" text="Selected File: None" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="lblFileHash" text="SHA-256: -" styleClass="empty-state-text" style="-fx-font-size: 11px;"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <VBox spacing="2" alignment="CENTER">
+                    <Label text="Total Rows" styleClass="empty-state-text"/>
+                    <Label fx:id="lblRowCount" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                </VBox>
+                <VBox spacing="2" alignment="CENTER">
+                    <Label text="Point Samples" styleClass="empty-state-text"/>
+                    <Label fx:id="lblPointCount" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                </VBox>
+                <VBox spacing="2" alignment="CENTER">
+                    <Label text="Period Summaries" styleClass="empty-state-text"/>
+                    <Label fx:id="lblSummaryCount" text="0" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <!-- Preview Table -->
+    <VBox styleClass="card" spacing="8" VBox.vgrow="ALWAYS">
+        <Label text="Parsed Records Preview (Atomic Commit Validation)" styleClass="card-title"/>
+        <TableView fx:id="tablePreview" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colRow" text="Row" prefWidth="60"/>
+                <TableColumn fx:id="colSourceCode" text="Source Code" prefWidth="120"/>
+                <TableColumn fx:id="colRecordCode" text="Record Code" prefWidth="130"/>
+                <TableColumn fx:id="colKind" text="Record Kind" prefWidth="140"/>
+                <TableColumn fx:id="colParam" text="Parameter" prefWidth="100"/>
+                <TableColumn fx:id="colValue" text="Observed Value" prefWidth="120"/>
+                <TableColumn fx:id="colUnit" text="Unit" prefWidth="80"/>
+                <TableColumn fx:id="colStatus" text="Validation Status" prefWidth="250"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>
