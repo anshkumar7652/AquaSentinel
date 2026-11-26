@@ -26,6 +26,10 @@ Build the project and run test suites:
 
 Run the desktop application:
 ```bash
+# 1-Click desktop launcher (Windows):
+.\run-aquasentinel.bat
+
+# Or via Maven wrapper:
 .\mvnw.cmd javafx:run
 ```
 
@@ -38,9 +42,10 @@ Run with custom data directory:
 
 ## Implementation Progress
 - [x] **Milestone 1:** Application shell, Maven wrapper, SQLite WAL connection & migration ledger, design tokens, navigation.
-- [ ] **Milestone 2:** User authentication, RBAC, sources & inspections management.
-- [ ] **Milestone 3:** Water samples lifecycle, decimal readings, and revisions.
-- [ ] **Milestone 4:** Threshold rule profiles, pure evaluation engine, and alert generation.
-- [ ] **Milestone 5:** CSV import wizard with staging and batch provenance.
-- [ ] **Milestone 6:** Corrective action closure with retests & operational dashboard KPIs.
-- [ ] **Milestone 7:** CSV/PDF reports export & final demonstration script.
+- [x] **Milestone 2:** User authentication, RBAC, sources & inspections management.
+- [x] **Milestone 3:** Water samples lifecycle, decimal readings, and revisions.
+- [x] **Milestone 4:** Threshold rule profiles, pure evaluation engine, and alert generation.
+- [x] **Milestone 5:** CSV import wizard with staging and batch provenance.
+- [x] **Milestone 6:** Corrective action closure with retests & operational dashboard KPIs.
+- [x] **Milestone 7:** CSV/PDF reports export & final demonstration script.
+- [x] **Full E2E Test Suite & 1-Click Launcher:** 27 unit, integration, and E2E tests passing. `run-aquasentinel.bat` added.

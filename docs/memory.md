@@ -1,7 +1,7 @@
 # AquaSentinel — Project Context & Implementation Memory
 
-**Document Version:** 1.0  
-**Last Updated:** 2026-10-20  
+**Document Version:** 1.1  
+**Last Updated:** 2026-11-26  
 **Context Purpose:** Read this file when starting a new chat session to immediately resume work without re-explaining the architecture, requirements, environment, or progress.
 
 ---
@@ -107,6 +107,7 @@ oots-project/
 | **Milestone 6: Corrective Actions & Dashboard** | **COMPLETED** | Assignable actions lifecycle (`OPEN`, `IN_PROGRESS`, `AWAITING_RETEST`, `CLOSED`), verified follow-up retest passing validation (same source, same profile, subsequent timestamp, no missing required), auto-resolution of alerts, and `DashboardService` live KPI summary and trend series queries. |
 | **Milestone 7: Reports & Final Delivery** | **COMPLETED** | `ReportService` snapshot aggregator, `CsvReportExporter` with spreadsheet formula injection protection, `PdfReportExporter` with PDFBox 3.x paginated layout + scientific disclaimers, educational demo fixtures in `data/demo/delhi_monitoring_demo.csv`, and 25 unit/integration tests passing. |
 | **Presentation Layer & UI Features** | **COMPLETED** | All 8 navigation sections fully functional with dedicated FXML and controllers: live Dashboard with single-parameter trend switching and sample evaluation inspector; Sources registration and real-time search; Inspections tour scheduling; Samples lifecycle and profile evaluation modal; Data Imports wizard with RFC 4180 validation and batch commit; Alerts & Corrective Actions with verified closure; Reports with PDF/CSV export and auto-open; Admin governance with user management and demo reset. Auto-seeding of baseline demo dataset on initial startup. |
+| **E2E Testing & 1-Click Desktop Launcher** | **COMPLETED** | Comprehensive end-to-end user journey test (`FullSystemEndToEndTest`) verifying bootstrap, demo CSV batch import, state lifecycle, profile evaluation, alert-action-retest closure, and PDF/CSV reporting. FXML well-formedness validation for all 9 screens. 27 total tests passing. Created 1-click `run-aquasentinel.bat` launcher. |
 
 ---
 
@@ -159,6 +160,10 @@ Full project build and verification:
 
 Run JavaFX desktop application:
 ```powershell
+# 1-Click desktop launcher (Windows):
+.\run-aquasentinel.bat
+
+# Or via Maven wrapper:
 .\mvnw.cmd javafx:run
 ```
 
