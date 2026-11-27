@@ -43,6 +43,7 @@ Run with custom data directory:
 ## Implementation Progress
 - [x] **Milestone 1:** Application shell, Maven wrapper, SQLite WAL connection & migration ledger, design tokens, navigation.
 - [x] **Milestone 2:** User authentication, RBAC, sources & inspections management.
+- [x] **Authentication & Startup Flow:** Interactive login screen (`login.fxml`), first-run administrator setup, PBKDF2 hash verification, demo account quick-fill (`admin` / `analyst1`), and sidebar session logout.
 - [x] **Milestone 3:** Water samples lifecycle, decimal readings, and revisions.
 - [x] **Milestone 4:** Threshold rule profiles, pure evaluation engine, and alert generation.
 - [x] **Milestone 5:** CSV import wizard with staging and batch provenance.

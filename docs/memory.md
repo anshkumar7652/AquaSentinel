@@ -1,7 +1,7 @@
 # AquaSentinel — Project Context & Implementation Memory
 
-**Document Version:** 1.1  
-**Last Updated:** 2026-11-26  
+**Document Version:** 1.2  
+**Last Updated:** 2026-11-27  
 **Context Purpose:** Read this file when starting a new chat session to immediately resume work without re-explaining the architecture, requirements, environment, or progress.
 
 ---
@@ -101,6 +101,7 @@ oots-project/
 |-----------|--------|-------------|
 | **Milestone 1: Application Shell & Bootstrap** | **COMPLETED** | Maven Wrapper configured, SQLite WAL + FK connection factory, `V001__initial.sql` (15 tables) migration ledger with SHA-256 drift checks, `app.css` design tokens, `app-shell.fxml` 8-item sidebar, `dashboard.fxml`, `AquaSentinelApp` verified running. |
 | **Milestone 2: Identity & Sources** | **COMPLETED** | First-run setup form, PBKDF2 password hashing (600k iterations, 16-byte salt), `AuthenticationService`, `Session`, `UserService`, `SourceService` (CRUD/archive), `InspectionService`, RBAC enforcement in services, audit logging, and `sources.fxml` presentation. |
+| **Authentication Flow & Startup UI** | **COMPLETED** | Startup flow now requires authentication: `login.fxml` + `LoginController` handles both first-run administrator creation and credential sign-in with PBKDF2 verification and constant-time check. Integrated demo account autofill (`admin` & `analyst1`), session propagation to `AppShellController`, and a dedicated sidebar "Log Out" button returning to login screen. |
 | **Milestone 3: Samples & Readings** | **COMPLETED** | Sample lifecycle (`REGISTERED` → `COLLECTED` → `RECEIVED` → `ANALYSIS_DRAFT` → `SUBMITTED`), `BigDecimal` reading validation against parameter constraints, `V002` baseline parameters seed, submission locking, and `supersedes_sample_id` revision tracking. |
 | **Milestone 4: Profiles & Pure Evaluation** | **COMPLETED** | Pure domain `ThresholdEvaluator` engine, inclusive/exclusive bounds, required missingness detection, context checking (`NOT_EVALUABLE`), SHA-256 input digests, `V003` baseline profile seed, atomic evaluation + open alert creation in single transaction, and idempotent re-evaluation. |
 | **Milestone 5: CSV Import Wizard** | **COMPLETED** | Normalized long-format CSV parser (RFC 4180), SHA-256 batch duplicate check, staging and validation error summaries, POINT_SAMPLE vs PERIOD_SUMMARY separation, atomic commit, and import template in `data/templates/`. |
