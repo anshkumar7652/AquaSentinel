@@ -53,6 +53,8 @@
                 </HBox>
                 <Label fx:id="lblCurrentUser" text="Admin User" style="-fx-font-weight: bold; -fx-text-fill: #FFFFFF;"/>
                 <Label fx:id="lblCurrentRole" text="Role: Administrator" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+                <Button fx:id="btnLogout" text="🚪  Log Out" maxWidth="Infinity" onAction="#handleLogout"
+                        style="-fx-background-color: rgba(239, 68, 68, 0.15); -fx-text-fill: #FCA5A5; -fx-font-size: 12px; -fx-font-weight: 600; -fx-alignment: CENTER_LEFT; -fx-padding: 8 12; -fx-background-radius: 6px; -fx-cursor: hand;"/>
             </VBox>
         </VBox>
     </left>

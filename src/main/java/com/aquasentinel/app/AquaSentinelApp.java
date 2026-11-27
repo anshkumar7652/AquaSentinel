@@ -23,12 +23,12 @@ public class AquaSentinelApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         log.info("Starting AquaSentinel UI...");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/app-shell.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
         Parent root = loader.load();
 
-        com.aquasentinel.presentation.controller.AppShellController shellController = loader.getController();
-        if (shellController != null) {
-            shellController.initApp(bootstrap);
+        com.aquasentinel.presentation.controller.LoginController loginController = loader.getController();
+        if (loginController != null) {
+            loginController.init(bootstrap, primaryStage);
         }
 
         Scene scene = new Scene(root, 1440, 900);
@@ -44,7 +44,7 @@ public class AquaSentinelApp extends Application {
         primaryStage.show();
         primaryStage.toFront();
         primaryStage.requestFocus();
-        log.info("AquaSentinel UI successfully launched.");
+        log.info("AquaSentinel UI successfully launched with authentication view.");
     }
 
     public static void main(String[] args) {
