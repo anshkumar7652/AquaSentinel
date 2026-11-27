@@ -47,6 +47,7 @@ public class AppShellController {
 
     private AppBootstrap bootstrap;
     private Session session;
+    private javafx.stage.Stage stage;
 
     @FXML
     public void initialize() {
@@ -54,17 +55,44 @@ public class AppShellController {
     }
 
     public void initApp(AppBootstrap bootstrap) {
-        this.bootstrap = bootstrap;
-        this.session = bootstrap.getOrCreateAdminSession();
+        initApp(bootstrap, bootstrap.getOrCreateAdminSession(), null);
+    }
 
-        if (lblCurrentUser != null && session != null) {
-            lblCurrentUser.setText(session.username());
+    public void initApp(AppBootstrap bootstrap, Session session, javafx.stage.Stage stage) {
+        this.bootstrap = bootstrap;
+        this.session = session != null ? session : bootstrap.getOrCreateAdminSession();
+        this.stage = stage;
+
+        if (lblCurrentUser != null && this.session != null) {
+            lblCurrentUser.setText(this.session.username());
         }
-        if (lblCurrentRole != null && session != null) {
-            lblCurrentRole.setText("Role: " + session.role());
+        if (lblCurrentRole != null && this.session != null) {
+            lblCurrentRole.setText("Role: " + this.session.role());
         }
 
         handleNavDashboard();
+    }
+
+    @FXML
+    public void handleLogout() {
+        log.info("User {} logging out", session != null ? session.username() : "unknown");
+        this.session = null;
+
+        if (stage != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+                javafx.scene.Parent root = loader.load();
+                LoginController loginController = loader.getController();
+                if (loginController != null) {
+                    loginController.init(bootstrap, stage);
+                }
+                javafx.scene.Scene scene = new javafx.scene.Scene(root, 1440, 900);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                log.error("Failed to return to login screen", e);
+            }
+        }
     }
 
     private void setActiveButton(Button activeButton) {

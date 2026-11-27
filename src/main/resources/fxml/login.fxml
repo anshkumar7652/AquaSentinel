@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.aquasentinel.presentation.controller.LoginController"
+           prefWidth="1440" prefHeight="900" minWidth="900" minHeight="650"
+           stylesheets="@/css/app.css"
+           style="-fx-background-color: #0F2D38;">
+
+    <!-- Background card wrapper -->
+    <VBox alignment="CENTER" maxWidth="460" spacing="24">
+        <padding>
+            <Insets top="32" right="28" bottom="32" left="28"/>
+        </padding>
+
+        <!-- Brand Banner -->
+        <VBox alignment="CENTER" spacing="8">
+            <ImageView fitWidth="56" fitHeight="56" preserveRatio="true">
+                <image>
+                    <Image url="@/icons/app-icon.png"/>
+                </image>
+            </ImageView>
+            <Label text="AquaSentinel" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF;"/>
+            <Label text="Water Quality Monitoring Management System" style="-fx-font-size: 13px; -fx-text-fill: #94A3B8;"/>
+        </VBox>
+
+        <!-- Login / Setup Form Card -->
+        <VBox spacing="18" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12px; -fx-padding: 32px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 18, 0, 0, 6);">
+            <VBox spacing="4">
+                <Label fx:id="lblTitle" text="Sign In to AquaSentinel" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #162B3A;"/>
+                <Label fx:id="lblSubtitle" text="Enter your credentials to access the monitoring system." wrapText="true" style="-fx-font-size: 13px; -fx-text-fill: #64748B;"/>
+            </VBox>
+
+            <!-- Error message label -->
+            <Label fx:id="lblError" visible="false" managed="false" wrapText="true"
+                   style="-fx-background-color: #FEF2F2; -fx-text-fill: #B91C1C; -fx-border-color: #FCA5A5; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 10px; -fx-font-size: 12px;"/>
+
+            <!-- Inputs -->
+            <VBox spacing="14">
+                <VBox spacing="6">
+                    <Label text="Username" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #334155;"/>
+                    <TextField fx:id="txtUsername" promptText="Enter username" style="-fx-padding: 10px; -fx-font-size: 13px; -fx-background-radius: 6px; -fx-border-radius: 6px; -fx-border-color: #CBD5E1;" onAction="#handleAction"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="Password" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #334155;"/>
+                    <PasswordField fx:id="txtPassword" promptText="Enter password" style="-fx-padding: 10px; -fx-font-size: 13px; -fx-background-radius: 6px; -fx-border-radius: 6px; -fx-border-color: #CBD5E1;" onAction="#handleAction"/>
+                </VBox>
+
+                <VBox fx:id="confirmPasswordBox" spacing="6" visible="false" managed="false">
+                    <Label text="Confirm Password" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #334155;"/>
+                    <PasswordField fx:id="txtConfirmPassword" promptText="Re-enter password" style="-fx-padding: 10px; -fx-font-size: 13px; -fx-background-radius: 6px; -fx-border-radius: 6px; -fx-border-color: #CBD5E1;" onAction="#handleAction"/>
+                </VBox>
+            </VBox>
+
+            <Button fx:id="btnAction" text="Sign In" maxWidth="Infinity" styleClass="btn-primary" style="-fx-padding: 11px; -fx-font-size: 14px;" onAction="#handleAction"/>
+
+            <!-- Demo hints -->
+            <VBox fx:id="demoAccountsBox" spacing="8" style="-fx-background-color: #F8FAFC; -fx-background-radius: 8px; -fx-border-color: #E2E8F0; -fx-border-radius: 8px; -fx-padding: 12px;">
+                <Label text="Demo Accounts (Click to autofill):" style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                <HBox spacing="10">
+                    <Button text="Admin (admin / Admin123!)" onAction="#handleFillAdminDemo" style="-fx-background-color: #E6F4F1; -fx-text-fill: #0F766E; -fx-font-size: 11px; -fx-font-weight: 600; -fx-cursor: hand; -fx-background-radius: 4px;"/>
+                    <Button text="Analyst (analyst1 / Analyst123!)" onAction="#handleFillAnalystDemo" style="-fx-background-color: #EFF6FF; -fx-text-fill: #1D4ED8; -fx-font-size: 11px; -fx-font-weight: 600; -fx-cursor: hand; -fx-background-radius: 4px;"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <Label text="Educational demo data — not a water-safety certification." styleClass="badge-demo"/>
+    </VBox>
+</StackPane>
