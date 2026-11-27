@@ -40,9 +40,10 @@
                     <Label text="Quality Evaluation Profiles" styleClass="card-title"/>
                     <TableView fx:id="tableProfiles" VBox.vgrow="ALWAYS">
                         <columns>
-                            <TableColumn fx:id="colProfileKey" text="Profile Key" prefWidth="140"/>
+                            <TableColumn fx:id="colProfileKey" text="Profile Key" prefWidth="120"/>
                             <TableColumn fx:id="colProfileVer" text="Version" prefWidth="60"/>
-                            <TableColumn fx:id="colProfileStatus" text="Status" prefWidth="100"/>
+                            <TableColumn fx:id="colProfileName" text="Profile Name" prefWidth="130"/>
+                            <TableColumn fx:id="colProfileStatus" text="Status" prefWidth="90"/>
                         </columns>
                     </TableView>
                 </VBox>

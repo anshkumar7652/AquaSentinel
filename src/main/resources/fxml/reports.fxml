@@ -28,7 +28,8 @@
                 <columns>
                     <TableColumn fx:id="colEvalId" text="Eval Ref" prefWidth="100"/>
                     <TableColumn fx:id="colSampleCode" text="Sample" prefWidth="120"/>
-                    <TableColumn fx:id="colOutcome" text="Outcome" prefWidth="140"/>
+                    <TableColumn fx:id="colOutcome" text="Outcome" prefWidth="100"/>
+                    <TableColumn fx:id="colEvalDate" text="Evaluated At" prefWidth="140"/>
                 </columns>
             </TableView>
         </VBox>
